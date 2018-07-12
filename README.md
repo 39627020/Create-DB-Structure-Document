@@ -19,7 +19,7 @@ Springboot 2.0.3
 生成的效果
 ![输入图片说明](https://images.gitee.com/uploads/images/2018/0712/173809_0d1fe137_609629.png "structure1.png")
 
-![输入图片说明](https://images.gitee.com/uploads/images/2018/0712/190401_5fee0f9b_609629.png "structure2.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2018/0712/190519_dd805119_609629.png "structure2.png")
 
 1. Fork 本项目
 2. 新建 Feat_xxx 分支
