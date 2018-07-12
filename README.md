@@ -4,20 +4,18 @@
 自动生成Oracle或者MySql数据库表结构文档
 
 #### 软件架构
-软件架构说明
-
+Springboot 2.0.3
 
 #### 安装教程
 
-1. xxxx
-2. xxxx
-3. xxxx
+1. 根据实际情况修改application.properties中的数据库连接字符串
+2. database.type 1:Mysql 2:Oracle
+3. database.name 对象数据库名称
 
 #### 使用说明
 
-1. xxxx
-2. xxxx
-3. xxxx
+1. 运行项目，访问http://127.0.0.1:8080/create, 在当前目录会生成一个数据库名称.xlsx文件。
+第一页是索引，后面是每个表的定义。
 
 #### 参与贡献
 
