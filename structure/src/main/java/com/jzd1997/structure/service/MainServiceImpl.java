@@ -43,6 +43,7 @@ public class MainServiceImpl implements IMainService{
 			cols.add(MyUtils.toString(record.get("列名")));
 			cols.add(MyUtils.toString(record.get("数据类型")));
 			cols.add(MyUtils.toString(record.get("允许为空")));
+			cols.add(MyUtils.toString(record.get("主键")));
 			cols.add(MyUtils.toString(record.get("默认值")));
 			cols.add(MyUtils.toString(record.get("备注")));
 			rows.add(cols);

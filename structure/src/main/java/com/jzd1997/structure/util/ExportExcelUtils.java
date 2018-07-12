@@ -61,11 +61,14 @@ public class ExportExcelUtils {
 			cell3.setCellValue("允许为空");
 			cell3.setCellStyle(style);
 			Cell cell4 = row.createCell(4);
-			cell4.setCellValue("默认值");
+			cell4.setCellValue("主键");
 			cell4.setCellStyle(style);
 			Cell cell5 = row.createCell(5);
-			cell5.setCellValue("备注");
+			cell5.setCellValue("默认值");
 			cell5.setCellStyle(style);
+			Cell cell6 = row.createCell(6);
+			cell6.setCellValue("备注");
+			cell6.setCellStyle(style);
 			List<List<String>> list = map.get(key);
 			for (int index = 0; index < list.size(); index++) {
 				Row row1 = sheet.createRow(index + 1);
@@ -88,6 +91,9 @@ public class ExportExcelUtils {
 					Cell cell_5 = row1.createCell(5);
 					cell_5.setCellValue(list.get(index).get(4));
 					cell_5.setCellStyle(style1);
+					Cell cell_6 = row1.createCell(6);
+					cell_6.setCellValue(list.get(index).get(5));
+					cell_6.setCellStyle(style1);
 				}
 			}
 		}
