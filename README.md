@@ -11,6 +11,7 @@ Springboot 2.0.3
 1. 根据实际情况修改application.properties中的数据库连接字符串
 2. database.type 1:Mysql 2:Oracle
 3. database.name 对象数据库名称
+4. 修改数据库连接字符串driver_class-name、url、username、password
 
 #### 使用说明
 
