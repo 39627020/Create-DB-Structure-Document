@@ -21,6 +21,7 @@ public class StructureDaoImpl implements IStructureDao {
 		
 		String dbType = env.getProperty("database.type");
 		if("1".equals(dbType)) {
+			//Mysql
 			sql = "SELECT table_name 表名, \r\n" + 
 					"					  COLUMN_NAME 列名,  \r\n" + 
 					"					  COLUMN_TYPE 数据类型,  \r\n" + 
@@ -31,9 +32,11 @@ public class StructureDaoImpl implements IStructureDao {
 					"					FROM  \r\n" + 
 					"					 INFORMATION_SCHEMA.COLUMNS  \r\n" + 
 					"					where  \r\n" + 
-					"					table_schema =?";
+					"					table_schema =? order by table_name";
+			System.out.println(sql);
 			return jdbcTemplate.queryForList(sql,env.getProperty("database.name"));
 		}else {
+			//Oracle
 			sql = "SELECT t.table_name as 表名, \r\n" + 
 					"					       t.column_name as 列名,\r\n" + 
 					"					       t.DATA_TYPE || '(' || t.DATA_LENGTH || ')' as 数据类型,\r\n" + 
@@ -49,7 +52,8 @@ public class StructureDaoImpl implements IStructureDao {
 					"					select cu.TABLE_NAME,cu.COLUMN_NAME,cu.POSITION\r\n" + 
 					"from user_cons_columns cu, user_constraints au \r\n" + 
 					"where cu.constraint_name = au.constraint_name and au.constraint_type = 'P'\r\n" + 
-					"					) con on t.table_name=con.table_name and t.column_name =con.COlUMN_NAME";
+					"					) con on t.table_name=con.table_name and t.column_name =con.COlUMN_NAME order by t.table_name";
+			System.out.println(sql);
 			return jdbcTemplate.queryForList(sql);
 		}
 	}

@@ -1,11 +1,10 @@
 package com.jzd1997.structure.service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.lang.builder.ToStringBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
@@ -25,7 +24,7 @@ public class MainServiceImpl implements IMainService{
 	@Override
 	public boolean findStructure() {
 		List<Map<String,Object>> list = structureDao.findStructure();
-		Map<String,List<List<String>>> sheets = new HashMap<String,List<List<String>>>();
+		Map<String,List<List<String>>> sheets = new LinkedHashMap<String,List<List<String>>>();
 		String tbl = "";
 		// 根据每列数据进行循环
 		List<List<String>> rows = null;
