@@ -48,7 +48,7 @@ public class MainServiceImpl implements IMainService{
 			rows.add(cols);
 		}
 		sheets.put(tbl, rows);
-		String fname = "./" + env.getProperty("database.name") + ".xlsx";
+		String fname = env.getProperty("output.path") + env.getProperty("database.name") + ".xlsx";
 	    ExportExcelUtils.createExcel(sheets,fname);
 		return true;
 	}
