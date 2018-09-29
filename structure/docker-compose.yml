@@ -1,8 +1,9 @@
 version: '2'
 services:
   structure:
+    container_name: structure
     build: ./
     ports:
       - "8080:8080"
     volumes:
-      - d:/output:/output
+      - ./output:/output
