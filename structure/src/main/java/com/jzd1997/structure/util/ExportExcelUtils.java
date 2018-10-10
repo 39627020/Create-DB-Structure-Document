@@ -27,23 +27,42 @@ public class ExportExcelUtils {
 		style.setBorderTop(BorderStyle.THIN);
 		style.setBorderLeft(BorderStyle.THIN);
 		style.setBorderRight(BorderStyle.THIN);
-		Sheet sheetHistory = wb.createSheet("修改履历");
-		sheetHistory.setColumnWidth(1, 20*256);
-		sheetHistory.setColumnWidth(2, 20*256);
-		sheetHistory.setColumnWidth(3, 40*256);
-		for(int i=1;i<26;i++) {
+		style.setWrapText(true);
+		Sheet sheetHistory = wb.createSheet("变更履历");
+		sheetHistory.setColumnWidth(0, 8*256);
+		sheetHistory.setColumnWidth(1, 12*256);
+		sheetHistory.setColumnWidth(2, 12*256);
+		sheetHistory.setColumnWidth(3, 25*256);
+		sheetHistory.setColumnWidth(4, 15*256);
+		sheetHistory.setColumnWidth(5, 40*256);
+		sheetHistory.setColumnWidth(6, 40*256);
+		for(int i=0;i<25;i++) {
 			Row row = sheetHistory.createRow(i);
+			Cell cell0 = row.createCell(0);
 			Cell cell1 = row.createCell(1);
 			Cell cell2 = row.createCell(2);
 			Cell cell3 = row.createCell(3);
+			Cell cell4 = row.createCell(4);
+			Cell cell5 = row.createCell(5);
+			Cell cell6 = row.createCell(6);
+			cell0.setCellStyle(style);
 			cell1.setCellStyle(style);
 			cell2.setCellStyle(style);
 			cell3.setCellStyle(style);
-			if(i==1) {
-				cell1.setCellValue("修改日期");
-				cell2.setCellValue("修改人");
-				cell3.setCellValue("备注");
-			}			
+			cell4.setCellStyle(style);
+			cell5.setCellStyle(style);
+			cell6.setCellStyle(style);
+			if(i==0) {
+				cell0.setCellValue("序号");
+				cell1.setCellValue("变更日期");
+				cell2.setCellValue("变更人");
+				cell3.setCellValue("数据表");
+				cell4.setCellValue("变更类型");
+				cell5.setCellValue("变更内容");
+				cell6.setCellValue("变更原因");
+			}else {
+				cell0.setCellFormula("row()-1");
+			}
 		}
 	}
 	
