@@ -8,11 +8,11 @@ Springboot 2.0.3
 
 #### 安装教程
 
-1. 根据实际情况修改application.properties中的数据库连接字符串
-2. database.type 1:Mysql 2:Oracle
-3. database.name 对象数据库名称
-4. 修改数据库连接字符串driver_class-name、url、username、password
-
+根据实际情况修改application.properties中的设置项
+1. database.type 1:Mysql 2:Oracle
+2. database.name 对象数据库名称
+3. 修改数据库连接字符串driver_class-name、url、username、password
+4. 输出位置output.path
 #### 使用说明
 
 1. 运行项目，访问http://127.0.0.1:8080/create, 在当前目录会生成一个数据库名称.xlsx文件。
