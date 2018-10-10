@@ -21,8 +21,35 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ExportExcelUtils {
+	public static void createHistory(Workbook wb) {
+		CellStyle style = wb.createCellStyle();
+		style.setBorderBottom(BorderStyle.THIN);
+		style.setBorderTop(BorderStyle.THIN);
+		style.setBorderLeft(BorderStyle.THIN);
+		style.setBorderRight(BorderStyle.THIN);
+		Sheet sheetHistory = wb.createSheet("修改履历");
+		sheetHistory.setColumnWidth(1, 20*256);
+		sheetHistory.setColumnWidth(2, 20*256);
+		sheetHistory.setColumnWidth(3, 40*256);
+		for(int i=1;i<26;i++) {
+			Row row = sheetHistory.createRow(i);
+			Cell cell1 = row.createCell(1);
+			Cell cell2 = row.createCell(2);
+			Cell cell3 = row.createCell(3);
+			cell1.setCellStyle(style);
+			cell2.setCellStyle(style);
+			cell3.setCellStyle(style);
+			if(i==1) {
+				cell1.setCellValue("修改日期");
+				cell2.setCellValue("修改人");
+				cell3.setCellValue("备注");
+			}			
+		}
+	}
+	
 	public static boolean createExcel(Map<String, List<List<String>>> map, String filename) {
 		Workbook wb = new XSSFWorkbook(); // or new XSSFWorkbook();
+		createHistory(wb);
 		// Title cells
 		CellStyle style = wb.createCellStyle();
 		style.setBorderBottom(BorderStyle.THIN);
