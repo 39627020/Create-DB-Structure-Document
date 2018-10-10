@@ -18,6 +18,7 @@ Springboot 2.0.3
 1. 运行项目，访问http://127.0.0.1:8080/create, 在当前目录会生成一个数据库名称.xlsx文件。
 第一页是索引，后面是每个表的定义。
 生成的效果
+![输入图片说明](https://images.gitee.com/uploads/images/2018/1010/112933_0955305c_609629.png "屏幕截图.png")
 ![输入图片说明](https://images.gitee.com/uploads/images/2018/0921/164337_5e7b539c_609629.png "屏幕截图.png")  
 ![输入图片说明](https://images.gitee.com/uploads/images/2018/0921/164420_768954b7_609629.png "屏幕截图.png")
 
