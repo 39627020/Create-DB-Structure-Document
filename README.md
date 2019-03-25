@@ -7,7 +7,11 @@
 Springboot 2.0.3
 
 #### 安装教程
-
+##### 首先安装oracle ojdbc driver
+在src/main/lib下有jar包，根据自己的情况替换jar包位置
+```
+mvn install:install-file -Dfile=D:\git\Create-DB-Structure\structure\src\main\lib\ojdbc6-11.2.0.3.jar -DgroupId=com.oracle -DartifactId=ojdbc6 -Dversion=11.2.0.3 -Dpackaging=jar
+```
 根据实际情况修改application.properties中的设置项
 1. database.type 1:Mysql 2:Oracle
 2. database.name 对象数据库名称
