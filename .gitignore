@@ -25,3 +25,14 @@ hs_err_pid*
 */.project
 */.settings/
 */target/
+\.idea/Create-DB-Structure\.iml
+
+\.idea/misc\.xml
+
+\.idea/modules\.xml
+
+\.idea/vcs\.xml
+
+\.idea/workspace\.xml
+
+structure/output/

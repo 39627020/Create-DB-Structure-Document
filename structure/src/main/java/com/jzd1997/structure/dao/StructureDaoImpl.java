@@ -35,7 +35,7 @@ public class StructureDaoImpl implements IStructureDao {
 					"					table_schema =? order by table_name";
 			System.out.println(sql);
 			return jdbcTemplate.queryForList(sql,env.getProperty("database.name"));
-		}else {
+		}else if("2".equals(dbType)) {
 			//Oracle
 			sql = "SELECT t.table_name as 表名, \r\n" + 
 					"					       t.column_name as 列名,\r\n" + 
@@ -53,6 +53,27 @@ public class StructureDaoImpl implements IStructureDao {
 					"from user_cons_columns cu, user_constraints au \r\n" + 
 					"where cu.constraint_name = au.constraint_name and au.constraint_type = 'P'\r\n" + 
 					"					) con on t.table_name=con.table_name and t.column_name =con.COlUMN_NAME order by t.table_name";
+			System.out.println(sql);
+			return jdbcTemplate.queryForList(sql);
+		}else{
+			//Postgres
+			String schema = env.getProperty("database.name");
+			sql = "SELECT c.relname as 表名,\n" +
+					"       a.attname AS 列名,\n" +
+					"       t.typname||'('||a.attlen||')' AS 数据类型,\n" +
+					"       a.attnotnull AS 允许为空,\n" +
+					"       '' AS 主键,\n" +
+					"       '' AS 默认值,\n" +
+					"       b.description AS 备注\n" +
+					"  FROM pg_class c,\n" +
+					"       pg_attribute a\n" +
+					"       LEFT OUTER JOIN pg_description b ON a.attrelid=b.objoid AND a.attnum = b.objsubid,\n" +
+					"       pg_type t\n" +
+					" WHERE c.relname in (select tablename from pg_tables where schemaname='" + schema + "')\n" +
+					"       and a.attnum > 0\n" +
+					"       and a.attrelid = c.oid\n" +
+					"       and a.atttypid = t.oid\n" +
+					" ORDER BY c.relname,a.attnum\n";
 			System.out.println(sql);
 			return jdbcTemplate.queryForList(sql);
 		}
