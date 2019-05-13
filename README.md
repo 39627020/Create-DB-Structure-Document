@@ -13,7 +13,7 @@ Springboot 2.0.3
 mvn install:install-file -Dfile=D:\git\Create-DB-Structure\structure\src\main\lib\ojdbc6-11.2.0.3.jar -DgroupId=com.oracle -DartifactId=ojdbc6 -Dversion=11.2.0.3 -Dpackaging=jar
 ```
 根据实际情况修改application.properties中的设置项
-1. database.type 1:Mysql 2:Oracle
+1. database.type 1:Mysql 2:Oracle 3:Postgres
 2. database.name 对象数据库名称
 3. 修改数据库连接字符串driver_class-name、url、username、password
 4. 输出位置output.path
@@ -31,6 +31,8 @@ mvn install:install-file -Dfile=D:\git\Create-DB-Structure\structure\src\main\li
 3. 提交代码
 4. 新建 Pull Request
 
+#### TODO List
+1. Postgres还不能标注某个字段是否为主键
 
 #### 码云特技
 
