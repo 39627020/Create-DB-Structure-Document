@@ -61,8 +61,8 @@ public class StructureDaoImpl implements IStructureDao {
             sql =   "SELECT c.relname as 表名,\n" + 
                     "       a.attname AS 列名,\n" +
                     "       t.typname||'('||a.attlen||')' AS 数据类型,\n" +
-                    "       a.attnotnull AS 允许为空,\n" +
-                    "       (CASE WHEN a2.attname != a.attname THEN FALSE ELSE TRUE END) AS 主键,\n" +
+                    "       (CASE WHEN a.attnotnull='t' THEN 'True' ELSE 'False' END) AS 允许为空,\n" +
+                    "       (CASE WHEN a2.attname = a.attname THEN 'True' ELSE '' END) AS 主键,\n" +
                     "       '' AS 默认值,\n" +
                     "       b.description AS 备注\n" +
                     "  FROM pg_attribute a\n" +

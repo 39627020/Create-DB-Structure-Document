@@ -32,7 +32,7 @@ mvn install:install-file -Dfile=D:\git\Create-DB-Structure\structure\src\main\li
 4. 新建 Pull Request
 
 #### TODO List
-1. Postgres还不能标注某个字段是否为主键
+1. Postgres默认值
 
 #### 码云特技
 
