@@ -56,27 +56,30 @@ public class StructureDaoImpl implements IStructureDao {
 			System.out.println(sql);
 			return jdbcTemplate.queryForList(sql);
 		}else{
-			//Postgres
-			String schema = env.getProperty("database.name");
-			sql = "SELECT c.relname as 表名,\n" +
-					"       a.attname AS 列名,\n" +
-					"       t.typname||'('||a.attlen||')' AS 数据类型,\n" +
-					"       a.attnotnull AS 允许为空,\n" +
-					"       '' AS 主键,\n" +
-					"       '' AS 默认值,\n" +
-					"       b.description AS 备注\n" +
-					"  FROM pg_class c,\n" +
-					"       pg_attribute a\n" +
-					"       LEFT OUTER JOIN pg_description b ON a.attrelid=b.objoid AND a.attnum = b.objsubid,\n" +
-					"       pg_type t\n" +
-					" WHERE c.relname in (select tablename from pg_tables where schemaname='" + schema + "')\n" +
-					"       and a.attnum > 0\n" +
-					"       and a.attrelid = c.oid\n" +
-					"       and a.atttypid = t.oid\n" +
-					" ORDER BY c.relname,a.attnum\n";
-			System.out.println(sql);
-			return jdbcTemplate.queryForList(sql);
-		}
+            //Postgres
+            String schema = env.getProperty("database.name");
+            sql =   "SELECT c.relname as 表名,\n" + 
+                    "       a.attname AS 列名,\n" +
+                    "       t.typname||'('||a.attlen||')' AS 数据类型,\n" +
+                    "       (CASE WHEN a.attnotnull='t' THEN 'True' ELSE 'False' END) AS 允许为空,\n" +
+                    "       (CASE WHEN a2.attname = a.attname THEN 'True' ELSE '' END) AS 主键,\n" +
+                    "       '' AS 默认值,\n" +
+                    "       b.description AS 备注\n" +
+                    "  FROM pg_attribute a\n" +
+                    "       LEFT JOIN pg_description b ON a.attrelid=b.objoid AND a.attnum = b.objsubid,\n" +
+                    "       pg_class c\n" +
+                    "       LEFT JOIN pg_constraint pg_co ON pg_co.conrelid = c.oid AND pg_co.contype = 'p'\n" +
+                    "       LEFT JOIN pg_attribute a2 ON a2.attrelid = c.oid AND a2.attnum = pg_co.conkey [ 1 ],\n" +
+                    "       pg_type t\n" +
+                    " WHERE c.relname in (select tablename from pg_tables where schemaname='" + schema + "')\n" +
+                    "       and a.attnum > 0\n" +
+                    "       and a.attrelid = c.oid\n" +
+                    "       and a.atttypid = t.oid\n" +
+                    "       and pg_table_is_visible (c.oid)\n" +
+                    " ORDER BY c.relname,a.attnum\n";
+            System.out.println(sql);
+            return jdbcTemplate.queryForList(sql);
+        }
 	}
 	
 }
